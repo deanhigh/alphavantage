@@ -28,4 +28,6 @@ jobs:
     - name: Vet
       run: go vet ./...
     - name: Test
+      env: # Or as an environment variable
+        AV_API_KEY: ${{ secrets.AV_API_KEY }}
       run: go test ./...
