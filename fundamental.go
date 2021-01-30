@@ -29,6 +29,13 @@ func (j *OptionalFloat64) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// MarshalJSON marshals the OptionalFloat64 type into float64 output fot json to avoid wrapping in strings
+func (j OptionalFloat64) MarshalJSON() ([]byte, error) {
+	f := float64(j)
+	vs := strconv.FormatFloat(f, 'f', 2, 64)
+	return []byte(vs), nil
+}
+
 // UnmarshalJSON Unmarsal optional date from AV
 func (j *OptionalDate) UnmarshalJSON(b []byte) error {
 	s := strings.Trim(string(b), "\"")
@@ -76,49 +83,49 @@ type CompanyOverview struct {
 	Address                    string           `json:"Address"`
 	FullTimeEmployees          int              `json:"FullTimeEmployees,string"`
 	FiscalYearEnd              string           `json:"FiscalYearEnd"`
-	LatestQuarter              string           `json:"LatestQuarter"`
-	MarketCapitalization       float64          `json:"MarketCapitalization,string"`
-	EBITDA                     float64          `json:"EBITDA,string"`
+	LatestQuarter              *OptionalDate    `json:"LatestQuarter,string"`
+	MarketCapitalization       *OptionalFloat64 `json:"MarketCapitalization,string"`
+	EBITDA                     *OptionalFloat64 `json:"EBITDA,string"`
 	PERatio                    *OptionalFloat64 `json:"PERatio,string"`
-	PEGRatio                   float64          `json:"PEGRatio,string"`
-	BookValue                  float64          `json:"BookValue,string"`
+	PEGRatio                   *OptionalFloat64 `json:"PEGRatio,string"`
+	BookValue                  *OptionalFloat64 `json:"BookValue,string"`
 	DividendPerShare           *OptionalFloat64 `json:"DividendPerShare,string"`
-	DividendYield              float64          `json:"DividendYield,string"`
-	EPS                        float64          `json:"EPS,string"`
-	RevenuePerShareTTM         float64          `json:"RevenuePerShareTTM,string"`
-	ProfitMargin               float64          `json:"ProfitMargin,string"`
-	OperatingMarginTTM         float64          `json:"OperatingMarginTTM,string"`
-	ReturnOnAssetsTTM          float64          `json:"ReturnOnAssetsTTM,string"`
-	ReturnOnEquityTTM          float64          `json:"ReturnOnEquityTTM,string"`
-	RevenueTTM                 float64          `json:"RevenueTTM,string"`
-	GrossProfitTTM             float64          `json:"GrossProfitTTM,string"`
-	DilutedEPSTTM              float64          `json:"DilutedEPSTTM,string"`
-	QuarterlyEarningsGrowthYOY float64          `json:"QuarterlyEarningsGrowthYOY,string"`
-	QuarterlyRevenueGrowthYOY  float64          `json:"QuarterlyRevenueGrowthYOY,string"`
-	AnalystTargetPrice         float64          `json:"AnalystTargetPrice,string"`
-	TrailingPE                 float64          `json:"TrailingPE,string"`
-	ForwardPE                  float64          `json:"ForwardPE,string"`
-	PriceToSalesRatioTTM       float64          `json:"PriceToSalesRatioTTM,string"`
-	PriceToBookRatio           float64          `json:"PriceToBookRatio,string"`
-	EVToRevenue                float64          `json:"EVToRevenue,string"`
-	EVToEBITDA                 float64          `json:"EVToEBITDA,string"`
-	Beta                       float64          `json:"Beta,string"`
-	High52Week                 float64          `json:"52WeekHigh,string"`
-	Low52Week                  float64          `json:"52WeekLow,string"`
-	MovingAverage50Day         float64          `json:"50DayMovingAverage,string"`
-	MovingAverage200Day        float64          `json:"200DayMovingAverage,string"`
-	SharesOutstanding          float64          `json:"SharesOutstanding,string"`
-	SharesFloat                float64          `json:"SharesFloat,string"`
-	SharesShort                float64          `json:"SharesShort,string"`
-	SharesShortPriorMonth      float64          `json:"SharesShortPriorMonth,string"`
-	ShortRatio                 float64          `json:"ShortRatio,string"`
-	ShortPercentOutstanding    float64          `json:"ShortPercentOutstanding,string"`
-	ShortPercentFloat          float64          `json:"ShortPercentFloat,string"`
-	PercentInsiders            float64          `json:"PercentInsiders,string"`
-	PercentInstitutions        float64          `json:"PercentInstitutions,string"`
-	ForwardAnnualDividendRate  float64          `json:"ForwardAnnualDividendRate,string"`
-	ForwardAnnualDividendYield float64          `json:"ForwardAnnualDividendYield,string"`
-	PayoutRatio                float64          `json:"PayoutRatio,string"`
+	DividendYield              *OptionalFloat64 `json:"DividendYield,string"`
+	EPS                        *OptionalFloat64 `json:"EPS,string"`
+	RevenuePerShareTTM         *OptionalFloat64 `json:"RevenuePerShareTTM,string"`
+	ProfitMargin               *OptionalFloat64 `json:"ProfitMargin,string"`
+	OperatingMarginTTM         *OptionalFloat64 `json:"OperatingMarginTTM,string"`
+	ReturnOnAssetsTTM          *OptionalFloat64 `json:"ReturnOnAssetsTTM,string"`
+	ReturnOnEquityTTM          *OptionalFloat64 `json:"ReturnOnEquityTTM,string"`
+	RevenueTTM                 *OptionalFloat64 `json:"RevenueTTM,string"`
+	GrossProfitTTM             *OptionalFloat64 `json:"GrossProfitTTM,string"`
+	DilutedEPSTTM              *OptionalFloat64 `json:"DilutedEPSTTM,string"`
+	QuarterlyEarningsGrowthYOY *OptionalFloat64 `json:"QuarterlyEarningsGrowthYOY,string"`
+	QuarterlyRevenueGrowthYOY  *OptionalFloat64 `json:"QuarterlyRevenueGrowthYOY,string"`
+	AnalystTargetPrice         *OptionalFloat64 `json:"AnalystTargetPrice,string"`
+	TrailingPE                 *OptionalFloat64 `json:"TrailingPE,string"`
+	ForwardPE                  *OptionalFloat64 `json:"ForwardPE,string"`
+	PriceToSalesRatioTTM       *OptionalFloat64 `json:"PriceToSalesRatioTTM,string"`
+	PriceToBookRatio           *OptionalFloat64 `json:"PriceToBookRatio,string"`
+	EVToRevenue                *OptionalFloat64 `json:"EVToRevenue,string"`
+	EVToEBITDA                 *OptionalFloat64 `json:"EVToEBITDA,string"`
+	Beta                       *OptionalFloat64 `json:"Beta,string"`
+	High52Week                 *OptionalFloat64 `json:"52WeekHigh,string"`
+	Low52Week                  *OptionalFloat64 `json:"52WeekLow,string"`
+	MovingAverage50Day         *OptionalFloat64 `json:"50DayMovingAverage,string"`
+	MovingAverage200Day        *OptionalFloat64 `json:"200DayMovingAverage,string"`
+	SharesOutstanding          *OptionalFloat64 `json:"SharesOutstanding,string"`
+	SharesFloat                *OptionalFloat64 `json:"SharesFloat,string"`
+	SharesShort                *OptionalFloat64 `json:"SharesShort,string"`
+	SharesShortPriorMonth      *OptionalFloat64 `json:"SharesShortPriorMonth,string"`
+	ShortRatio                 *OptionalFloat64 `json:"ShortRatio,string"`
+	ShortPercentOutstanding    *OptionalFloat64 `json:"ShortPercentOutstanding,string"`
+	ShortPercentFloat          *OptionalFloat64 `json:"ShortPercentFloat,string"`
+	PercentInsiders            *OptionalFloat64 `json:"PercentInsiders,string"`
+	PercentInstitutions        *OptionalFloat64 `json:"PercentInstitutions,string"`
+	ForwardAnnualDividendRate  *OptionalFloat64 `json:"ForwardAnnualDividendRate,string"`
+	ForwardAnnualDividendYield *OptionalFloat64 `json:"ForwardAnnualDividendYield,string"`
+	PayoutRatio                *OptionalFloat64 `json:"PayoutRatio,string"`
 	DividendDate               *OptionalDate    `json:"DividendDate"`
 	ExDividendDate             *OptionalDate    `json:"ExDividendDate"`
 	LastSplitFactor            string           `json:"LastSplitFactor"`
