@@ -23,14 +23,14 @@ func TestGetRequest(t *testing.T) {
 	resp, err := c.Do(req, &co)
 	if err != nil {
 		// io.Copy(os.Stdout, resp.Body)
-		t.Logf("%3v", resp.Body)
+		t.Logf("%#v", resp.Body)
 		t.Fatal(err)
 	}
 
 	// t.Logf("Response: \n%#v", resp)
 	t.Logf("Validating company overview: \n%#v", co)
 	if co.Symbol != "IBM" {
-		t.Errorf("CompanyOverview = %v; looking for APPL", co)
+		t.Errorf("CompanyOverview = %v; looking for IBM", co)
 	}
 
 }
