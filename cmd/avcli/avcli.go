@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
@@ -20,8 +19,10 @@ func dumpFundamental(symbol string) error {
 		return err
 	}
 
-	encoder := json.NewEncoder(os.Stdout)
-	encoder.Encode(co)
+	err = alphavantage.DumpJSON(os.Stdout, co)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
