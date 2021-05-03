@@ -33,7 +33,7 @@ func TestDumpJSON(t *testing.T) {
 	s := Sample{SampleString: "Test", SampleInt: 5, SampleOptionalDate: &sod, SampleOptionalFloat: &sof}
 	s2 := TransformSample{SampleString: "Test", SampleInt: 5, SampleOptionalDate: &testTime, SampleOptionalFloat: 16.2}
 
-	fo, err := ioutil.TempFile("tmp", "dumptest.*.json")
+	fo, err := ioutil.TempFile("", "dumptest.*.json")
 	if err != nil {
 		t.Fatal(err)
 	}

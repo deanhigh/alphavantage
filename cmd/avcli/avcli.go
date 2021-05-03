@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/deanhigh/alphavantage"
+	alphavantage "github.com/deanhigh/alphavantage/pkg/avc"
 )
 
 func dumpFundamental(symbol string) error {
